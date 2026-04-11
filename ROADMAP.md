@@ -1,14 +1,16 @@
-# Product Roadmap — Short-Term Rental Booking Platform
+# Product Roadmap — Karon Residences
 
-> **Living document.** Update this whenever the backlog changes, stories are moved between versions, or scope decisions are made.
->
-> Last updated: 2026-04-03
+> **Living document.** Last updated: 2026-04-11
 
 ---
 
 ## Vision
 
-A fully agentic direct booking platform for short-term rental properties in Stockholm and Mil Palmeras. Built to eliminate OTA dependency, establish a direct guest relationship, and eventually run with minimal human involvement — AI agents handle discovery, booking, communications, pricing, and content.
+A direct booking platform for short-term rental properties — eliminates OTA dependency, establishes direct guest relationships, and delivers a complete booking experience with zero host intervention.
+
+Marketing, CRM, analytics, and content operations are handled by **[HiveOps](https://github.com/rosekaron/hiveops)** — a separate agent-driven business operations platform. Karon focuses on listings, bookings, payments, and calendar sync.
+
+White-label ready — replicable for other property owners who want to cut out Airbnb/Booking.com.
 
 ---
 
@@ -16,80 +18,87 @@ A fully agentic direct booking platform for short-term rental properties in Stoc
 
 | Version | Theme | Status | Focus |
 |---|---|---|---|
-| **v1** | MVP — Core booking loop | 🔲 Not started | First paying guest |
-| **v2** | Communications | 🔲 Not started | Remove manual messaging workload |
-| **v3** | Marketing | 🔲 Not started | Organic + paid traffic on autopilot |
-| **v4** | Intelligence | 🔲 Not started | Revenue optimisation |
-| **v5** | Scale | 🔲 Not started | Growth & repeat bookings |
+| **v1** | Core Booking Loop | 🚧 In progress | First paying guest |
+| **v2** | Kill Bill Payment Gateway | 📋 Planned | Self-hosted payments |
+| **v3** | AI Guest Messaging & Auth | 📋 Planned | Automated guest lifecycle |
 
 ---
 
-## v1 — MVP: Core Booking Loop
-**Goal:** A guest can find a property, book it, and pay. The host can manage it.
+## v1 — Core Booking Loop
+**Goal:** A guest can find a property, book it, pay, and receive confirmation. The host can manage bookings and calendar sync.
 
 | # | Story area | Status |
 |---|---|---|
-| 1 | Property listing pages (all properties visible, no search/filter) | 🔲 |
-| 2 | Instant booking with payment (Stripe, PayPal, manual) | 🔲 |
-| 3 | Booking confirmation email (summary + check-in instructions) | 🔲 |
-| 4 | Admin — view, create, edit, cancel bookings | 🔲 |
-| 5 | Admin — iCal / Google Calendar sync | 🔲 |
-| 6 | Admin — add/edit/publish property listings | 🔲 |
+| 1 | Property listing pages (guest browsing + availability) | ✅ Complete |
+| 2 | Admin — property management (CRUD, photos, CalDAV connections) | ✅ Complete |
+| 3 | Booking flow with price breakdown | Up next |
+| 4 | Card payment via Stripe (instant confirmation) | Up next |
+| 5 | Bank transfer via Wise (pending state, admin approval) | Up next |
+| 6 | Booking confirmation email | Up next |
+| 7 | Admin — booking list, manual create, cancel, approve transfers | Not started |
+| 8 | Admin — CalDAV polling (15 min), sync failures, availability blocking | Not started |
 
-**Deliberately deferred from v1:** AI chat assistant → v2, Guest CRM → v2, Multilingual → v3, All AI agents → v2+, Analytics → v4
+**User stories:** [stories/v1.md](https://github.com/rosekaron/karon-residences/blob/main/stories/v1.md)
 
 ---
 
-## v2 — Communications: Automated Guest Messaging
-**Goal:** Remove the manual messaging burden. Guest experience feels professional without team effort.
+## v2 — Kill Bill Payment Gateway
+**Goal:** Self-hosted payment processing alongside or replacing Stripe.
 
 | # | Story area | Status |
 |---|---|---|
-| 7 | AI agent — auto-reply to guest inquiries (< 60 sec) | 🔲 |
-| 8 | AI agent — pre-arrival message (48h before check-in) | 🔲 |
-| 9 | AI agent — post-stay follow-up (24h after check-out) | 🔲 |
-| 10 | AI chat assistant on property pages | 🔲 |
-| 11 | Admin — message template editor | 🔲 |
-| 12 | Admin — guest CRM (contact history, notes, tags) | 🔲 |
+| 9 | Kill Bill deployed with Kaui admin UI | 📋 |
+| 10 | Guest card payment routed through Kill Bill | 📋 |
+| 11 | Admin invoice and payment records in Kill Bill | 📋 |
+| 12 | Stripe + bank transfer paths remain functional during migration | 📋 |
 
 ---
 
-## v3 — Marketing: Content & Social Automation
-**Goal:** Organic and paid traffic on autopilot. Platform finds its own guests.
+## v3 — AI Guest Messaging & Auth
+**Goal:** Automated guest communications + admin self-service auth.
 
 | # | Story area | Status |
 |---|---|---|
-| 13 | AI agent — weekly blog post suggestions + approval queue | 🔲 |
-| 14 | AI agent — blog writing & publishing to CMS | 🔲 |
-| 15 | AI agent — SEO content for property pages & landing pages | 🔲 |
-| 16 | AI agent — Facebook/Instagram ad campaigns (occupancy-triggered) | 🔲 |
-| 17 | Multilingual support (EN, SV, DE, NL) — all guest-facing content | 🔲 |
-| 18 | Admin — ad campaign reporting | 🔲 |
+| 13 | AI agent — auto-reply to guest inquiries (< 60 sec) | 📋 |
+| 14 | AI agent — pre-arrival message (48h before check-in) | 📋 |
+| 15 | AI agent — post-stay follow-up (24h after check-out) | 📋 |
+| 16 | AI chat assistant on property pages | 📋 |
+| 17 | Role-based access (admin vs co-host) | 📋 |
+| 18 | Admin registration UI + password reset | 📋 |
 
 ---
 
-## v4 — Intelligence: Revenue Optimisation
-**Goal:** Make data-driven decisions automatically. Earn more per booking.
+## Moved to HiveOps
 
-| # | Story area | Status |
-|---|---|---|
-| 19 | AI agent — dynamic pricing (season, demand, local events) | 🔲 |
-| 20 | Admin — floor/ceiling price rules per property | 🔲 |
-| 21 | Admin — analytics dashboard (occupancy, revenue, traffic sources) | 🔲 |
-| 22 | Admin — revenue report export | 🔲 |
+The following capabilities were originally in this roadmap. They are now managed by AI agents in **[HiveOps](https://github.com/rosekaron/hiveops)** — a separate business operations platform.
+
+| Capability | HiveOps Agent |
+|---|---|
+| Guest CRM (contact history, tags, notes) | CRM Agent |
+| Newsletter / email marketing | Email Agent |
+| GDPR consent management | Consent Agent |
+| Analytics / UTM attribution | Analytics Agent |
+| AI blog writing & SEO content | Blog Writer Agent |
+| Facebook/Instagram ad campaigns | Ad Campaign Manager Agent |
+| Multilingual content (EN, SV, DE, NL) | Translator Agent |
+| Dynamic pricing | Future vertical agent |
+| Revenue reporting | Analytics Agent |
+
+Karon connects to HiveOps via API. See the [HiveOps Technical Overview](https://github.com/rosekaron/hiveops/blob/main/TECHNICAL-OVERVIEW.md) for details.
 
 ---
 
-## v5 — Scale: Growth & Retention
-**Goal:** Maximise repeat bookings and open backup channels.
+## Pre-Production Checklist (v1 Release Gates)
 
-| # | Story area | Status |
-|---|---|---|
-| 23 | Reviews & ratings | 🔲 |
-| 24 | OTA channel sync (Airbnb, Booking.com as backup) | 🔲 |
-| 25 | Direct messaging thread UI (replace email-only) | 🔲 |
-| 26 | Multi-property discount logic | 🔲 |
-| 27 | Guest loyalty / repeat booking incentive | 🔲 |
+- [ ] Security audit — resolve npm audit vulnerabilities
+- [ ] Secrets rotation — replace all placeholder env values
+- [ ] Stripe webhook — register production endpoint
+- [ ] Email domain verification in Resend
+- [ ] CalDAV credentials — confirm all 3 property calendar connections
+- [ ] Database backups — enable automated backups
+- [ ] CalDAV password encryption — encrypt at rest
+- [ ] RLS policies — verify all tables
+- [ ] HiveOps connection — verify Consent, Email, Analytics agents reachable
 
 ---
 
@@ -97,8 +106,9 @@ A fully agentic direct booking platform for short-term rental properties in Stoc
 
 | Date | Decision | Reason |
 |---|---|---|
-| 2026-04-03 | AI chat assistant moved from v1 → v2 | Not needed to take first booking; adds complexity to MVP |
-| 2026-04-03 | Operations split into v2/v3/v4 | Smaller increments, clearer value per release |
-| 2026-04-03 | Growth split into v5 | OTA sync and reviews are non-critical until platform has traction |
-| 2026-04-03 | Date-based search/filter removed entirely | Too few properties to need it |
-| 2026-04-03 | Custom calendar build removed | iCal sync covers the need at lower cost |
+| 2026-04-03 | AI chat assistant moved from v1 → v3 | Not needed for first booking |
+| 2026-04-03 | Date-based search/filter removed | Too few properties to need it |
+| 2026-04-03 | Custom calendar build removed | iCal sync covers the need |
+| 2026-04-11 | Marketing, CRM, analytics, content moved to HiveOps | Not hospitality-specific — reusable across verticals as agent-driven business ops |
+| 2026-04-11 | Guest CRM moved from Karon Phase 7 to HiveOps CRM Agent | Any business has customers — CRM is vertical-agnostic |
+| 2026-04-11 | Milestones simplified: v1 (booking), v2 (Kill Bill), v3 (messaging + auth) | Karon focuses on booking domain only |
